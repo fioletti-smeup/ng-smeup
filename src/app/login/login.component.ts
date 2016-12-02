@@ -8,7 +8,7 @@ import {
 @Component({
     selector: 'su-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
@@ -22,7 +22,8 @@ export class LoginComponent {
             if (this.authService.isLoggedIn) {
                 // Get the redirect URL from our auth service
                 // If no redirect has been set, use the default
-                let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/smeup';
+                let redirect = this.authService.redirectUrl ?
+                this.authService.redirectUrl : '/smeup';
 
                 // Redirect the user
                 this.router.navigate([redirect]);

@@ -14,10 +14,10 @@ import { ConfigService } from './config.service';
 @Injectable()
 export class AuthService {
 
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
   // store the URL so we can redirect after logging in
   redirectUrl: string;
-  env = "demo";
+  env = 'demo';
   credentials: Credentials;
 
   constructor(private configService: ConfigService, private http: Http) { }
@@ -29,11 +29,12 @@ export class AuthService {
     urlSearchParams.append('env', this.env);
     urlSearchParams.append('user', user);
     urlSearchParams.append('pwd', password);
-    return this.http.post(this.configService.config.baseURL + '/auth/login', urlSearchParams.toString(), options)
+    return this.http.post(
+      this.configService.config.baseURL + '/auth/login', urlSearchParams.toString(), options)
       .map(response => response.json().data || {})
       .do(v => this.credentials = v)
       .map(v => !!v)
-      .do(v => this.isLoggedIn = v).catch(this.handleError);;
+      .do(v => this.isLoggedIn = v).catch(this.handleError);
   }
 
   logout(): void {

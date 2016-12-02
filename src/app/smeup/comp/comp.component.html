@@ -1,7 +1,10 @@
-<div style="border: solid 1px red; padding: 1px">
-    <span>{{comp.id}} - {{comp.type}}</span>
-    <div>
-        <div *ngFor="let child of comp.comps">
+<div [ngClass]="{'smeup-comp': isSmeupComp}">
+    <div *ngIf="isSmeupComp">
+        {{comp.id}}<br/> {{comp.type}}
+        <br/> {{comp.content}}
+    </div>
+    <div class="container" [ngClass]="{'row-flex-direction': comp.direction==='ROW','column-flex-direction': comp.direction==='COLUMN'}">
+        <div *ngFor="let child of comp.comps" class="item">
             <su-comp [comp]='child'></su-comp>
         </div>
     </div>

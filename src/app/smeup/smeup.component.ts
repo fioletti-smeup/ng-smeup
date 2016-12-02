@@ -7,7 +7,7 @@ import { Comp } from './comp/comp';
 @Component({
   selector: 'su-smeup',
   templateUrl: './smeup.component.html',
-  styleUrls: ['./smeup.component.scss']
+  styleUrls: ['./smeup.component.css']
 })
 export class SmeupComponent implements OnInit {
 

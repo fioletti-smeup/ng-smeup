@@ -1,9 +1,13 @@
-export interface Comp {
+export class Comp {
 	id: string;
 	title: string;
 	type: string;
 	comps: Comp[];
 	content: string;
 	loaded: boolean;
-    horizontal: boolean;
+	direction: string;
+
+	get isSmeupComp(): string {
+		return 'prova';
+	}
 }

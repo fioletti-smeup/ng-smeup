@@ -9,6 +9,6 @@ export class ConfigService {
   // TODO: Put in an external configuration
   baseURL = 'http://localhost:8080/WebUP/services';
   constructor() {
-    this.config = { "baseURL": this.baseURL };
+    this.config = { 'baseURL': this.baseURL };
   }
 }
