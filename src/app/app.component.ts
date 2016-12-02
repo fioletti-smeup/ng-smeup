@@ -1,28 +1,36 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService } from './auth.service';
-
-import { Router } from '@angular/router';
+import { views } from './app-nav-views';
+import { MOBILE } from './services/constants';
 
 @Component({
-  selector: 'su-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'my-app',
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Sme UP';
+  showMonitor = (ENV === 'development' && !AOT &&
+    ['monitor', 'both'].includes(STORE_DEV_TOOLS) // set in constants.js file in project root
+  );
+  mobile = MOBILE;
+  sideNavMode = MOBILE ? 'over' : 'side';
+  views = views;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+    public route: ActivatedRoute,
+    public router: Router
+  ) { }
 
+  activateEvent(event) {
+    if (ENV === 'development') {
+      console.log('Activate Event:', event);
+    }
   }
 
-  get isLoggedIn() {
-    return this.authService.isLoggedIn;
-  }
-
-  logout(): boolean {
-
-    this.authService.logout();
-    return false;
+  deactivateEvent(event) {
+    if (ENV === 'development') {
+      console.log('Deactivate Event', event);
+    }
   }
 }

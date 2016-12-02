@@ -1,33 +1,36 @@
-/* tslint:disable:no-unused-variable */
-
+/* tslint:disable: max-line-length */
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
-describe('AppComponent', () => {
+import { MaterialModule } from '@angular/material';
+
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './features/dashboard.component';
+import { NotFound404Component } from './not-found404.component';
+import { routes } from './app.routing';
+import { StoreDevToolsModule } from './features/store-devtools.module';
+
+import 'rxjs/add/operator/takeUntil';
+
+describe('App Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      imports: [
+        MaterialModule.forRoot(),
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes(routes),
+        StoreDevToolsModule
+        ],
+      providers: [],
+      declarations: [AppComponent, DashboardComponent, NotFound404Component]
     });
   });
 
-  it('should create the app', async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'su works!'`, async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('su works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
+  it('should contain app text', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('su works!');
+    expect(fixture.nativeElement).toContainText('Angular Starter App');
   }));
+
 });
