@@ -1,0 +1,47 @@
+.demo-basic {
+    padding: 0;
+}
+
+.demo-basic md-card-content {
+    padding: 16px;
+}
+
+.demo-full-width {
+    width: 100%;
+}
+
+.demo-icons {
+    font-size: 100%;
+    height: inherit;
+    vertical-align: top;
+    width: inherit;
+}
+
+.demo-card {
+    margin: 16px;
+}
+
+.demo-textarea {
+    resize: none;
+    border: none;
+    overflow: auto;
+    padding: 0;
+    background: lightblue;
+}
+
+.demo-button {
+    button,
+    a {
+        margin: 8px;
+        text-transform: uppercase;
+    }
+    section {
+        display: flex;
+        align-items: center;
+        background-color: #f7f7f7;
+        margin: 8px;
+    }
+    p {
+        padding: 5px 15px;
+    }
+}

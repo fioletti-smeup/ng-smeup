@@ -1,0 +1,10 @@
+<md-card class="demo-card demo-basic demo-button">
+    <md-toolbar color="primary">Login</md-toolbar>
+    <md-card-content>
+        <form #form="ngForm">
+            <md-input placeholder="User" style="width: 100%" [(ngModel)]="user" name="user" maxlength="32"></md-input>
+            <md-input placeholder="Password" style="width: 100%" [(ngModel)]="password" name="password" type="password" maxlength="32"></md-input>
+            <button md-raised-button color="primary" (click)="login()">Login</button>
+        </form>
+    </md-card-content>
+</md-card>

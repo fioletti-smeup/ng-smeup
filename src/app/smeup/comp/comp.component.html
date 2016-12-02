@@ -1,0 +1,8 @@
+<div style="border: solid 1px red; padding: 1px">
+    <span>{{comp.id}} - {{comp.type}}</span>
+    <div>
+        <div *ngFor="let child of comp.comps">
+            <su-comp [comp]='child'></su-comp>
+        </div>
+    </div>
+</div>

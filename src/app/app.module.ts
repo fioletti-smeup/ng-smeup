@@ -6,6 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
+import { SmeupModule } from './smeup/smeup.module';
+import { LoginModule } from './login/login.module';
+
+import { AuthGuardService } from './auth-guard.service';
+import { AuthService } from './auth.service';
+import { ConfigService } from './config.service';
+
+import { MaterialModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,9 +23,12 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SmeupModule,
+    LoginModule,
+    MaterialModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuardService, AuthService, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

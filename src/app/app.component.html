@@ -1,4 +1,14 @@
-<h1>
-  {{title}}
-</h1>
+<div class="su-toolbar">
+    <md-toolbar color="primary">
+        <a [routerLink]="['/smeup']">
+            <md-icon class="su-toolbar-icon">home</md-icon>
+        </a>
+        <span>{{title}}</span>
+        <!-- This fills the remaining space of the current row -->
+        <span class="fill-remaining-space"></span>
+        <a *ngIf="isLoggedIn" [routerLink]="['/login']" (click)='logout()'>
+            <md-icon class="su-toolbar-icon">exit_to_app</md-icon>
+        </a>
+    </md-toolbar>
+</div>
 <router-outlet></router-outlet>
