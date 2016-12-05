@@ -5,6 +5,11 @@ export const views: Object[] = [
     link: ['']
   },
   {
+    name: 'Sme UP',
+    icon: 'home',
+    link: ['smeup']
+  },
+  {
     name: 'Lazy',
     icon: 'file_download',
     link: ['lazy']
