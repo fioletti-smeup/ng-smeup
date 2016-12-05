@@ -13,7 +13,7 @@ import { rootReducer } from './reducers';
 import { StoreDevToolsModule } from './features/store-devtools.module';
 import { UserEffects } from './user/user.effects';
 
-import { SmeupModule } from './smeup/smeup.module';
+import { SmeupModule } from './features/smeup.module';
 import { LoginModule } from './login/login.module';
 
 const STORE_DEV_TOOLS_IMPORTS = [];
