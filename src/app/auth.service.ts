@@ -14,7 +14,7 @@ import { ConfigService } from './config.service';
 @Injectable()
 export class AuthService {
 
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   // store the URL so we can redirect after logging in
   redirectUrl: string;
   env = 'demo';
