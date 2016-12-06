@@ -1,5 +1,4 @@
 <md-card class="demo-card demo-basic demo-button">
-    <div *ngIf="comp" class="container">
-        <su-comp [comp]="comp"></su-comp>
-    </div>
+    <span *ngIf="!comp">Loading....</span>{{date}}
+    <su-comp *ngIf="comp" [comp]="comp"></su-comp>
 </md-card>

@@ -1,34 +1,70 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from '../auth.service';
-import {
-    Router,
-} from '@angular/router';
+import { AppState } from '../reducers';
+import { Store } from '@ngrx/store';
+import { UserActions } from '../user/user.actions';
+import { User } from '../user/user.model';
+import { UserService } from '../user/user.service';
 
 @Component({
-    selector: 'su-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'my-dashboard',
+  templateUrl: './login.component.html',
+  styles: [`#my-logout-button { background: #F44336 }`]
 })
-export class LoginComponent {
 
-    user: string = 'wu3_01';
-    password: string = 'webup_04';
+export class LoginComponent implements OnDestroy, OnInit {
+  destroyed$: Subject<any> = new Subject<any>();
+  form: FormGroup;
+  nameLabel = 'Enter your name';
+  passwordLabel = 'Enter password';
+  user: User;
+  user$: Observable<User>;
+  constructor(
+    fb: FormBuilder,
+    private store: Store<AppState>,
+    private userActions: UserActions,
+    private userService: UserService
+  ) {
+    this.form = fb.group({
+      name: '',
+      password: ''
+    });
+    this.user$ = this.store.select(state => state.user.user);
+    this.user$.takeUntil(this.destroyed$)
+      .subscribe(user => { this.user = user; });
+  }
 
-    constructor(private authService: AuthService, private router: Router) { }
+  ngOnInit() {
+    this.form.get('name').setValue(this.user.name);
+  }
 
-    login(): boolean {
-        this.authService.login(this.user, this.password).subscribe(() => {
-            if (this.authService.isLoggedIn) {
-                // Get the redirect URL from our auth service
-                // If no redirect has been set, use the default
-                let redirect = this.authService.redirectUrl ?
-                this.authService.redirectUrl : '/smeup';
+  // clearName() {
+  //   this.store.dispatch(this.userActions.editUser(
+  //     Object.assign({}, this.user, { name: '' }
+  //     )));
 
-                // Redirect the user
-                this.router.navigate([redirect]);
-            }
-        });
-        return false;
-    }
+  //   this.form.get('name').setValue('');
+  // }
+
+  logout() {
+    this.store.dispatch(this.userActions.logout());
+  }
+
+  // submitState() {
+  //   this.store.dispatch(this.userActions.editUser(
+  //     Object.assign({}, this.user, { name: this.form.get('name').value }
+  //     )));
+  // }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+  }
+
+  login(): boolean {
+    this.userService.login(this.form.get('name').value, this.form.get('password').value);
+    return false;
+  }
 }

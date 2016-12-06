@@ -8,19 +8,26 @@ import 'rxjs/add/operator/delay';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
-import { Credentials } from './credentials';
 import { ConfigService } from './config.service';
+
+import { Store } from '@ngrx/store';
+import { AppState } from './reducers';
+import { UserActions } from './user/user.actions';
+
+
 
 @Injectable()
 export class AuthService {
 
-  isLoggedIn: boolean = false;
   // store the URL so we can redirect after logging in
   redirectUrl: string;
   env = 'demo';
-  credentials: Credentials;
 
-  constructor(private configService: ConfigService, private http: Http) { }
+  constructor(
+    private configService: ConfigService,
+    private http: Http, private store: Store<AppState>,
+    private userActions: UserActions
+  ) { }
 
   login(user: string, password: string): Observable<boolean> {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -32,13 +39,13 @@ export class AuthService {
     return this.http.post(
       this.configService.config.baseURL + '/auth/login', urlSearchParams.toString(), options)
       .map(response => response.json().data || {})
-      .do(v => this.credentials = v)
+      .do(v => this.store.dispatch(this.userActions.setJWT(v.JWT)))
       .map(v => !!v)
-      .do(v => this.isLoggedIn = v).catch(this.handleError);
+      .catch(this.handleError);
   }
 
   logout(): void {
-    this.isLoggedIn = false;
+    // this.isLoggedIn = false;
   }
   private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure

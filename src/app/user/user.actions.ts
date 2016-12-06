@@ -9,6 +9,14 @@ import { User } from './user.model';
 
 export class UserActions {
 
+  static SET_JWT = '[JWT] Set JWT';
+  setJWT(jwt: string): Action {
+    return {
+      type: UserActions.SET_JWT,
+      payload: jwt
+    };
+  }
+
   static EDIT_USER = '[User] Edit User';
   editUser(user: User): Action {
     return {

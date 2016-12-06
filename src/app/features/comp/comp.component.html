@@ -1,7 +1,6 @@
 <div [ngClass]="{'smeup-comp': isSmeupComp}">
     <div *ngIf="isSmeupComp">
         {{comp.type}}
-        <br/> {{comp.content}}
     </div>
     <div class="container" [ngClass]="{'row-flex-direction': comp.direction==='ROW','column-flex-direction': comp.direction==='COLUMN'}">
         <div *ngFor="let child of comp.comps" class="item">

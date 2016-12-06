@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { AuthService } from '../auth.service';
-import { Credentials } from '../credentials';
-
 import { Observable } from 'rxjs/Observable';
 
 import { Http, Response } from '@angular/http';
@@ -11,22 +8,26 @@ import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { ConfigService } from '../config.service';
 
 import { Comp } from './comp/comp';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers';
 
 @Injectable()
 export class SmeupService {
 
   constructor(
-    private authService: AuthService,
     private configService: ConfigService,
-    private http: Http) { }
+    private http: Http,
+    private store: Store<AppState>
+  ) { }
 
   getComp(fun: string): Observable<Comp> {
 
+    let jwt = null;
+    this.store.select(state => state.user.jwt).subscribe(v => jwt = v);
     let headers = new Headers(
       {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ' + this.authService.credentials.JWT
-        //'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJIQVNIX0tFWSI6ImRmVHM5eXVoMEF3ZTB5dWlNbzAzRDR5N2h3WmVuYnNkIiwiU0VMRl9TSUdORUQiOnRydWUsIlNFU1NJT05fQ09ERSI6IjdveTczMDNkdDZfMDAxZTQiLCJDSEFSU0VUIjoiV0lORE9XUy0xMjUyIiwiZXhwIjoxNDgwNzA2OTYwLCJpYXQiOjE0ODA2OTI1NjAsIlNNRVVQX1BST1ZJREVSIjoiaHR0cHM6Ly9wcm92aWRlcnRlc3Quc21ldXAuY29tIn0.kQYWrJDPlQCzRJ-BV6RY0NCGqVmA-eDbULwEhTuP6bg'
+        'Authorization': 'Bearer ' + jwt
       }
     );
     let options = new RequestOptions({ headers: headers });

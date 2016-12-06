@@ -8,12 +8,14 @@ export interface UserState {
   user: User;
   loading: boolean;
   loaded: boolean;
+  jwt: string;
 };
 
 export const initialState: UserState = {
-  user: { name: 'Angular User' },
+  user: { name: '' },
   loading: false,
   loaded: true,
+  jwt: ''
 };
 
 export function userReducer(state = initialState, action: Action): UserState {
@@ -22,6 +24,12 @@ export function userReducer(state = initialState, action: Action): UserState {
     case UserActions.EDIT_USER: {
       return Object.assign({}, state, {
         user: action.payload
+      });
+    }
+
+    case UserActions.SET_JWT: {
+      return Object.assign({}, state, {
+        jwt: action.payload
       });
     }
 
