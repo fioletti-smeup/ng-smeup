@@ -1,4 +1,4 @@
-import { Table } from './table';
+import { Table } from './matrix/table';
 
 export class Comp {
     id: string;

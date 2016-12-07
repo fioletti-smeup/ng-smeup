@@ -1,8 +1,14 @@
 <div [ngClass]="{'smeup-comp': isSmeupComp}">
     <div *ngIf="isSmeupComp">
         <div [ngSwitch]="comp.type">
-            <div *ngSwitchCase="'MAT'">MATRIX Component</div>
-            <div *ngSwitchDefault>Unknown Component: {{comp.type}}</div>
+            <div *ngSwitchCase="'MAT'">
+                <su-matrix [table]='comp.table'></su-matrix>
+            </div>
+            <div *ngSwitchCase="'TRE'">
+                <su-tree [tree]='comp.tree'></su-tree>
+            </div>
+            <div *ngSwitchCase="'EXD'">EXD2</div>
+            <div *ngSwitchDefault>Unknown Component: {{comp.type}}(Loaded: {{comp.loaded}})</div>
         </div>
     </div>
     <div class="container" [ngClass]="{'row-flex-direction': comp.direction==='ROW','column-flex-direction': comp.direction==='COLUMN'}">

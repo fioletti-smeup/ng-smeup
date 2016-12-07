@@ -13,8 +13,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SmeupComponent implements OnInit {
     // TODO
-    // startFun: string = 'F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())';
-    startFun: string = 'F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;MAT_013)';
+    startFun: string = 'F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())';
+    // startFun: string = 'F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;MAT_013)';
     fun = this.startFun;
     form: FormGroup;
     comp: Comp;

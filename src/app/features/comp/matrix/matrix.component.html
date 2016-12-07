@@ -1,0 +1,15 @@
+<div>
+    Matrix Component
+</div>
+<md-data-table layout-fill>
+    <thead>
+        <tr>
+            <th *ngFor="let col of cols">{{col.d}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of rows">
+            <td *ngFor="let cell of row.content.entry">{{cell.value.c}}</td>
+        </tr>
+    </tbody>
+</md-data-table>
