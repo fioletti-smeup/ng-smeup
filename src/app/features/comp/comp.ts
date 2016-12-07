@@ -1,3 +1,5 @@
+import { Table } from './table';
+
 export class Comp {
     id: string;
     title: string;
@@ -6,4 +8,5 @@ export class Comp {
     content: string;
     loaded: boolean;
     direction: string;
+    table: Table;
 }

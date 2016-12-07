@@ -2,7 +2,7 @@
     <h3> Welcome to the Sme UP {{user.name}}!</h3>
 </header>
 <section>
-    <form [formGroup]="form" (ngSubmit)="submitState()" autocomplete="off">
+    <form [formGroup]="form" autocomplete="off">
         <md-input formControlName="name" [placeholder]="nameLabel" maxlength="32"></md-input><br>
         <md-input formControlName="password" [placeholder]="passwordLabel" type="password" maxlength="32"></md-input><br>
         <button md-raised-button color="primary" (click)="login()">Login</button>

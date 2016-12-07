@@ -9,7 +9,7 @@ import { Comp } from './comp';
 })
 export class CompComponent implements OnInit {
 
-  private static SMEUP_COMPS = ['EXD', 'SPL', 'LAB', 'BTN', 'TRE', 'IML'];
+  private static SMEUP_COMPS = ['EXD', 'SPL', 'LAB', 'BTN', 'TRE', 'IML', 'MAT'];
   @Input() comp: Comp;
 
   constructor() { }

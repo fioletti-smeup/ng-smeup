@@ -1,4 +1,10 @@
 <md-card class="demo-card demo-basic demo-button">
-    <span *ngIf="!comp">Loading....</span>{{date}}
+    <section>
+        <form novalidate [formGroup]="form">
+            <md-input formControlName="fun" placeholder="Enter your fun here!" maxlength="1024" class="full-width"></md-input>
+            <button md-raised-button color="primary" (click)="getComp()">Go!</button>
+        </form>
+    </section>
+    <span *ngIf="!comp">Loading...</span>{{date}}
     <su-comp *ngIf="comp" [comp]="comp"></su-comp>
 </md-card>

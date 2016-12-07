@@ -4,31 +4,44 @@ import { SmeupService } from './smeup.service';
 
 import { Comp } from './comp/comp';
 import { ApplicationRef } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'su-smeup',
-  templateUrl: './smeup.component.html',
-  styleUrls: ['./smeup.component.css'],
+    selector: 'su-smeup',
+    templateUrl: './smeup.component.html',
+    styleUrls: ['./smeup.component.css'],
 })
 export class SmeupComponent implements OnInit {
+    // TODO
+    // startFun: string = 'F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())';
+    startFun: string = 'F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;MAT_013)';
+    fun = this.startFun;
+    form: FormGroup;
+    comp: Comp;
+    date: Date;
 
-  fun: string = 'F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())';
+    constructor(
+        private smeupService: SmeupService,
+        private appRef: ApplicationRef,
+        fb: FormBuilder
+    ) {
+        this.form = fb.group({
+            fun: this.startFun
+        });
+    }
 
-  comp: Comp;
-  date: Date;
+    ngOnInit() {
+        this.smeupService
+            .getComp(this.form.get('fun').value)
+            .subscribe(
+            v => { this.comp = v; /* TODO remove this workaround */this.appRef.tick(); });
+    }
 
-  constructor(private smeupService: SmeupService, private appRef: ApplicationRef) {
-  }
+    getComp(): void {
 
-  ngOnInit() {
-    this.getComp();
-  }
-
-  getComp(): void {
-
-    this.smeupService
-      .getComp(this.fun)
-      .subscribe(
-        v => { this.comp = v; /* TODO remove this workaround */this.appRef.tick(); });
-  }
+        this.smeupService
+            .getComp(this.form.get('fun').value)
+            .subscribe(
+            v => this.comp = v);
+    }
 }

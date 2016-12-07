@@ -6,12 +6,15 @@ import { SmeupService } from './smeup.service';
 import { CompModule } from './comp/comp.module';
 import { MaterialModule } from '@angular/material';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
     SmeupRoutingModule,
     CompModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   declarations: [SmeupComponent],
   providers: [SmeupService]
