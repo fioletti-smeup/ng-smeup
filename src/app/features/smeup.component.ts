@@ -31,10 +31,15 @@ export class SmeupComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('Module is hot? ' + !!module.hot);
         this.smeupService
             .getComp(this.form.get('fun').value)
             .subscribe(
-            v => { this.comp = v; /* TODO remove this workaround */this.appRef.tick(); });
+            v => {
+                this.comp = v;
+                // TODO remove this workaround
+                if (module.hot) this.appRef.tick();
+            });
     }
 
     getComp(): void {
