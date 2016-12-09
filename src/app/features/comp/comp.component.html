@@ -7,7 +7,10 @@
             <div *ngSwitchCase="'TRE'">
                 <su-tree [tree]='comp.tree'></su-tree>
             </div>
-            <div *ngSwitchCase="'EXD'">EXD2</div>
+            <div *ngSwitchCase="'IML'">
+                <su-iml [iml]='comp.IML'></su-iml>
+            </div>
+            <div *ngSwitchCase="'EXD'">EXD (Loaded: {{comp.loaded}})</div>
             <div *ngSwitchDefault>Unknown Component: {{comp.type}}(Loaded: {{comp.loaded}})</div>
         </div>
     </div>

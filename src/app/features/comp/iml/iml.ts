@@ -1,6 +1,5 @@
 import { Node } from '../node';
 
-export class Tree {
-
-  root: Node;
+export class IML {
+  ns: Node[];
 }

@@ -1,7 +1,7 @@
 <div>
     Matrix Component
 </div>
-<md-data-table layout-fill>
+<md-data-table *ngIf="table" layout-fill>
     <thead>
         <tr>
             <th *ngFor="let col of cols">{{col.d}}</th>

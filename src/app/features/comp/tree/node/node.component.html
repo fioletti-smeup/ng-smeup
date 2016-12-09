@@ -1,0 +1,6 @@
+<span>{{node.d}}</span>
+<ul>
+    <li *ngFor="let child of node.ns">
+        <su-node [node]='child'></su-node>
+    </li>
+</ul>
