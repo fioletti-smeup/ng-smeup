@@ -8,6 +8,6 @@ import { MatrixComponent } from './matrix.component';
   imports: [CommonModule, Ng2MaterialModule],
   exports: [MatrixComponent],
   declarations: [MatrixComponent],
-  providers: [],
+  providers: []
 })
 export class MatrixModule { }
